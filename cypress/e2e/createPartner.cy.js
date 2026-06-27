@@ -1,7 +1,7 @@
 Cypress.on('uncaught:exception', (err) => {
   return false; 
 });
-import LoginPage from './page-objects/LoginPage';
+import LoginPage from './page-objects/LoginPage.js';
 import LeftNavigation from './page-objects/LeftNavigation.js';
 import PartnersPage from './page-objects/PartnersPage.js';
 
