@@ -4,6 +4,8 @@ Cypress.on('uncaught:exception', (err) => {
 import LoginPage from './page-objects/LoginPage.js';
 import LeftNavigation from './page-objects/LeftNavigation.js';
 import PartnersPage from './page-objects/PartnersPage.js';
+import PartnerDataModal from './page-objects/PartnerDataModal.js';
+import { generatePartner } from '../support/factories/partner';
 
 describe(' My First Test', () => {
   it('Visits avtoikonom and checks the title', () => {
@@ -14,7 +16,10 @@ describe(' My First Test', () => {
     LoginPage.login('test_qa_ex@example.com', 'test_qa_ex@example.com');
     cy.setLanguageToEnglish();
     LeftNavigation.goToPartners();
-    const newPartner = PartnersPage.CreateNewPartner();
+    PartnersPage.openNewPartnerCreateScreen();
+    const newPartner = generatePartner();
+    PartnerDataModal.fillPartnerForm(newPartner);
+    PartnerDataModal.saveData();
     PartnersPage.verifyPartnerExists(newPartner.name);
    })
 })
